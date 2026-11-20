@@ -15,8 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.unity3d.ads.IUnityAdsInitializationListener;
 import com.unity3d.ads.IUnityAdsLoadListener;
 import com.unity3d.ads.IUnityAdsShowListener;
@@ -30,12 +28,13 @@ public class AdsManager {
 
     private static final String TAG = "AdsManager";
 
-    public static final String GAME_ID = "800446112";
-    public static final String BANNER_PLACEMENT = "bnr";
-    public static final String INTERSTITIAL_PLACEMENT = "int";
-    public static final String REWARDED_PLACEMENT = "vdo";
+    // New Fresh Game ID from R Links
+    public static final String GAME_ID = "800446181";
+    public static final String BANNER_PLACEMENT = "banner";
+    public static final String INTERSTITIAL_PLACEMENT = "reward";
+    public static final String REWARDED_PLACEMENT = "reward";
 
-    // Set testMode to true for development testing
+    // Set testMode to true for testing before store release
     public static boolean TEST_MODE = true;
 
     private static boolean isInitialized = false;
@@ -55,9 +54,9 @@ public class AdsManager {
             @Override
             public void onInitializationComplete() {
                 isInitialized = true;
-                Log.d(TAG, "Unity Ads Initialized Successfully! (TestMode: " + TEST_MODE + ")");
+                Log.d(TAG, "Unity Ads Initialized Successfully! GameID: " + GAME_ID);
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    Toast.makeText(context, "Unity Ads Connected ✅", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Unity Ads Connected ✅ (ID: " + GAME_ID + ")", Toast.LENGTH_SHORT).show();
                     if (callback != null) {
                         callback.onInitialized();
                     }
@@ -77,10 +76,7 @@ public class AdsManager {
 
     public static void loadBanner(Activity activity, ViewGroup bannerContainer) {
         if (bannerContainer == null) return;
-        if (!isInitialized) {
-            Log.w(TAG, "Cannot load banner: Unity Ads not initialized yet.");
-            return;
-        }
+        if (!isInitialized) return;
 
         activity.runOnUiThread(() -> {
             try {
