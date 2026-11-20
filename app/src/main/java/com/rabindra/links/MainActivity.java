@@ -31,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
         tvTasksCompletedCount = findViewById(R.id.tvTasksCompletedCount);
         bannerContainer = findViewById(R.id.bannerContainerMain);
 
-        // Initialize Unity Ads SDK with Game ID: 800446112
-        AdsManager.initialize(this);
-        AdsManager.loadBanner(this, bannerContainer);
+        // Initialize Unity Ads SDK with Game ID: 800446112 and load banner only after init
+        AdsManager.initialize(this, () -> {
+            AdsManager.loadBanner(MainActivity.this, bannerContainer);
+        });
 
         setupClickListeners();
         updateUI();
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateUI();
+        AdsManager.loadBanner(this, bannerContainer);
     }
 
     private void updateUI() {
@@ -75,14 +77,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Task 4: Watch Video Ad (Unity Rewarded: BP_Rewarded_Android)
         findViewById(R.id.cardVideoTask).setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "Loading sponsored video...", Toast.LENGTH_SHORT).show();
             AdsManager.showRewarded(MainActivity.this, () -> {
                 rewardManager.addPoints(200);
                 updateUI();
                 showSuccessDialog("🎉 Video Reward Claimed!", "You successfully watched the sponsor ad and earned +200 PTS!");
-            }, () -> {
-                Toast.makeText(MainActivity.this, "Video not ready yet. Please try again in a few seconds.", Toast.LENGTH_SHORT).show();
-            });
+            }, null);
         });
 
         // Redeem / Withdraw Dialog
