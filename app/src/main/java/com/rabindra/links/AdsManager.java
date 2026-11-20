@@ -31,11 +31,11 @@ public class AdsManager {
     private static final String TAG = "AdsManager";
 
     public static final String GAME_ID = "800446112";
-    public static final String BANNER_PLACEMENT = "BP_Banner_Android";
-    public static final String INTERSTITIAL_PLACEMENT = "BP_Interstitial_Android";
-    public static final String REWARDED_PLACEMENT = "BP_Rewarded_Android";
+    public static final String BANNER_PLACEMENT = "bnr";
+    public static final String INTERSTITIAL_PLACEMENT = "int";
+    public static final String REWARDED_PLACEMENT = "vdo";
 
-    // Set testMode to true for development/testing
+    // Set testMode to true for development testing
     public static boolean TEST_MODE = true;
 
     private static boolean isInitialized = false;
@@ -57,7 +57,7 @@ public class AdsManager {
                 isInitialized = true;
                 Log.d(TAG, "Unity Ads Initialized Successfully! (TestMode: " + TEST_MODE + ")");
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    Toast.makeText(context, "Unity Ads Ready ✅", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Unity Ads Connected ✅", Toast.LENGTH_SHORT).show();
                     if (callback != null) {
                         callback.onInitialized();
                     }
@@ -69,7 +69,7 @@ public class AdsManager {
                 isInitialized = false;
                 Log.e(TAG, "Unity Ads Initialization Failed: " + error + " - " + message);
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    Toast.makeText(context, "Init Error: " + error + "\n" + message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Unity Init Error: " + error + "\n" + message, Toast.LENGTH_LONG).show();
                 });
             }
         });
