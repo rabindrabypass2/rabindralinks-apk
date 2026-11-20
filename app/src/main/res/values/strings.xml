@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">RabindraLinks</string>
+    <string name="app_subtitle">Play Games • Solve Puzzles • Earn Rewards</string>
+    <string name="wallet_title">Total Earnings</string>
+    <string name="points_suffix">PTS</string>
+    <string name="btn_withdraw">Redeem Coins</string>
+    <string name="tasks_heading">Game Tasks</string>
+
+    <string name="quiz_title">Brain Quiz Challenge</string>
+    <string name="quiz_desc">Answer 5 quick quiz questions (+100 PTS)</string>
+
+    <string name="puzzle_title">Memory Tile Puzzle</string>
+    <string name="puzzle_desc">Match all pairs in minimum taps (+150 PTS)</string>
+
+    <string name="math_title">Speed Math Sprint</string>
+    <string name="math_desc">Solve quick arithmetic against the clock (+80 PTS)</string>
+
+    <string name="video_title">Mega Video Bonus</string>
+    <string name="video_desc">Watch a sponsored video ad (+200 PTS)</string>
+
+    <string name="daily_title">Daily Check-In</string>
+    <string name="daily_desc">Claim daily streak login reward (+50 PTS)</string>
+</resources>
